@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grade 12 English Online Exam - 120 Questions</title>
+<style>
+*{box-sizing:border-box} body{font-family:Arial,sans-serif;background:#f3f6f9;margin:0;color:#17202a}
+header{background:#123b5d;color:#fff;padding:18px;text-align:center}
+.container{max-width:1000px;margin:20px auto;padding:0 15px}
+.card{background:#fff;border-radius:12px;padding:22px;box-shadow:0 3px 12px #0001;margin-bottom:18px}
+.info{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+input[type=text]{width:100%;padding:12px;border:1px solid #bbb;border-radius:7px;font-size:16px}
+.timer{position:sticky;top:0;background:#fff;padding:12px;text-align:center;border-radius:10px;box-shadow:0 2px 8px #0002;z-index:5;font-weight:bold}
+.q{margin:18px 0;padding:16px;border:1px solid #ddd;border-radius:9px}
+.q h3{margin-top:0;font-size:17px}
+label{display:block;padding:9px;margin:5px 0;background:#f7f7f7;border-radius:6px;cursor:pointer}
+label:hover{background:#edf4f8}
+button{border:0;border-radius:8px;padding:12px 20px;font-size:16px;cursor:pointer}
+#submitBtn{background:#1677c8;color:white}
+#resetBtn{background:#777;color:white;margin-left:8px}
+#result{display:none;background:#eaf7ee;border:1px solid #8bc79a}
+.section{background:#e9f0f6;padding:10px;border-radius:7px;margin-top:20px;font-weight:bold}
+.small{font-size:14px;color:#555}
+@media(max-width:650px){.info{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+<h1>Grade 12 English Online Examination</h1>
+<p>Kombolcha General and Preparatory Secondary School — May 2014</p>
+<p>120 Questions | Time Allowed: 2 Hours</p>
+</header>
+
+<div class="container">
+<div class="card">
+<div class="info">
+<div><label class="small">Student Name</label><input id="studentName" type="text" placeholder="Enter your name"></div>
+<div><label class="small">Student ID (optional)</label><input id="studentId" type="text" placeholder="Enter ID"></div>
+</div>
+</div>
+<div class="timer">Time remaining: <span id="timer">02:00:00</span></div>
+<form id="exam"></form>
+<div class="card">
+<button id="submitBtn" type="button" onclick="submitExam()">Submit Exam</button>
+<button id="resetBtn" type="button" onclick="location.reload()">Reset</button>
+</div>
+<div id="result" class="card"></div>
+</div>
+
+<script>
+const questions = [
+["SECTION ONE: Word Order", "1. Kind fictions are you of what interested in", ["What kind of fictions are you interested in?","What are you interested in kind of fiction?","What fictions of kind you are interested?","What are you interested in kind of fictions?"],0],
+["","2. beautiful Ethiopian jeans blue new a he wore",["He wore a new beautiful Ethiopian blue jeans.","He wore a beautiful blue new Ethiopian jeans.","He wore a beautiful new blue Ethiopian jeans.","He wore a blue new beautiful Ethiopian jeans."],2],
+["","3. cannot be you pay member of a fee membership you the club unless.",["Unless you cannot be the member of the club, you pay the member fee.","Unless the member of the club pay, you cannot be the fee of the member.","Unless you pay the membership fee, you cannot be a member of the club.","Unless you cannot be the member of the club, you pay the fee membership."],2],
+["","4. She in do the what you evening know does",["Do you know what she does in the evening?","What she does know you do in the evening?","Do you in the evening know she does?","In the evening know what she does?"],0],
+["","5. Medicine take are than instructed you never more to",["Take more medicine than you are never instructed to.","You are instructed never to take more than medicine.","You are never instructed to take more than medicine.","Never take more medicine than you are instructed to."],3],
+
+["SECTION TWO: Paragraph Coherence","6. Correct order of the sentences a-e",["c-d-b-e-a","b-e-d-c-a","c-d-b-a-e","e-d-c-a-b"],0],
+["","7. Correct order of the sentences a-e",["a-e-b-d-c","a-d-b-e-c","a-d-e-b-c","d-a-b-e-c"],2],
+["","8. Correct order of the sentences a-e",["b-a-e-d-c","d-b-a-e-c","b-d-a-e-c","d-e-a-c-b"],2],
+["","9. Correct order of the sentences a-e",["c-b-d-e-a","b-d-e-a-c","b-c-e-a-d","b-d-e-c-a"],1],
+
+["SECTION THREE: Reading Comprehension — Passage I: The Development of Ethiopian Airlines","10. One of the following countries has a great role for the establishment of the airline and assistance of manpower.",["British","The US","French","Italy"],1],
+["","11. Ethiopian Airlines has been managed and staffed by Ethiopian personnel in the year _____.",["1946","1945","1947","1971"],3],
+["","12. The Ethiopian Airlines first began its functions _____.",["On 21 December 1945","On 8 April 1946","On 25 December 1971","On 9 January 1951"],1],
+["","13. In the early 1960s, the Ethiopian Airline added ______ countries to its destination network.",["3","5","4","2"],0],
+["","14. The first airport was unable to accommodate the Boeing and then the new airport was built. This expression is expressed in ____.",["Paragraph 3","Paragraph 4","Paragraph 5","Paragraph 6"],3],
+["","15. One of the following countries was added to the route network as international scheduled services in the late 1940s.",["Aden","Jimma","Cairo","Port Sudan"],3],
+["","16. “Skytrains acquired from” (paragraph 3 line 12), acquired means _____.",["began","introduced","got","based"],2],
+["","17. “Passengers cargo configuration” (paragraph 3 line 14), configuration means _____.",["achievement","arrangement","establishment","involvement"],1],
+["","18. “National airline to shake off the poverty” (paragraph 1 line 4), shake off means _____.",["to get something","to get rid of","to start new service","to set up something new"],1],
+["","19. “Asked Americans, British and French to assist him” (Paragraph 1 line 2), him refers to _____.",["Liberation of Ethiopia","The airline","Emperor Haile Selassie","American pilots"],2],
+["","20. “Added Accra, Khartoum and Monrovia to its destination” (Paragraph 6 line 26), its refers to _____.",["Accra","Ethiopia","the airline","Italy"],2],
+
+["SECTION THREE: Reading Comprehension — Passage II: Corruption","21. What does the word acquainted (paragraph one line two) mean?",["To make something difficult","To make something easy","To make something familiar","To make something unusual"],2],
+["","22. Which one of the following words is synonym to the word rotten?",["mean","kind","terrible","handsome"],2],
+["","23. People who are at the helm of power spread corruption. What does the word helm mean?",["chairman","leader","officer","clerk"],1],
+["","24. According to the passage which one of the following is true about the cause of corruption?",["The cause of corruption is very far unknown","The cause of corruption is easily known","The cause of corruption is unclear","The cause of corruption is the people at all"],1],
+["","25. The solution of corruption is mainly discussed on paragraph _____.",["One","Two","Three","Three & Four"],3],
+["","26. What does the phrase “due punishment” paragraph 3, line 4 mean?",["Illegal punishment","Appropriate punishment","Severe punishment","Immoral punishment"],1],
+["","27. The phrase “punitive measure” paragraph 4, line 4 means _____.",["Identifying the cause","Punishing the corrupt","Educating the people","fighting through weapon"],1],
+["","28. The central idea of paragraph 2 is _____.",["Defining the word corruption","Identifying the cause of corruption","Designing possible measures for corruption","Explaining the positive effect of corruption"],1],
+["","29. Which paragraph shows the effect of practicing corruption?",["Paragraph 4","Paragraph 3","Paragraph 2","Paragraph 1"],2],
+["","30. According to the passage, who should be responsible to fight against corruption?",["The government","The officers","The clerks","All the people"],3],
+["","31. What is the core message of the passage?",["Fighting against corruption","Punishing the corrupt","Identifying the cause of corruption","Stating the effect of corruption"],0],
+["","32. What should be the title of the passage?",["The corrupt","Galloping corruption","Corruption","The Cause of corruption"],2],
+
+["SECTION FOUR: Vocabulary — Completion","33. Is it true that your friend was _____ to the prison? That is really bad news.",["released","sent out","discharged","jailed"],3],
+["","34. I was _____ when I heard the news of his father’s death.",["excited","surprised","shocked","ashamed"],2],
+["","35. The pilot was not feeling so well before he _____ in his plane.",["took up","took over","took away","took off"],3],
+["","36. I don’t think I can _____ with him any longer.",["put off","put on","put out","put up"],3],
+["","37. The man _____ bicycle and he couldn’t walk properly.",["called off","cut off","came off","went off"],2],
+["","38. She _____ in bed the whole day because she had a terrible headache.",["lie","lay","lied","lies"],1],
+["","39. We can’t _____ malaria by wearing clean towels.",["spread","stop","setup","distribution"],0],
+["","40. So far, the political parties are _____ we don’t know who would win.",["Head in head","neck in neck","neck and neck","head to head"],2],
+["","41. Didn’t I tell you to _____ up the meaning of this word in the dictionary?",["see","read","look","check"],2],
+["","42. I didn’t find it was fascinating, but to me it was a bit _____.",["interesting","boring","exciting","bored"],1],
+
+["SECTION FOUR: Vocabulary — Substitution","43. “Get over” this problem means _____.",["discover","solve","carry out","find"],1],
+["","44. “Turned up” in a coat pocket means _____.",["found","hid","mended","seen"],0],
+["","45. “Salient” points of the report means _____.",["important","unknown","approval","similar"],0],
+["","46. Barking dogs seldom bite. “Seldom” means _____.",["always","rarely","often","never"],1],
+["","47. “Hold out” without water means _____.",["Delay","restrain","survive","contain"],2],
+["","48. “Antique” furniture means _____.",["modern","new","ancient","brand"],2],
+["","49. “Halt” the spread of HIV and malaria means _____.",["increase","stop","de-motivate","encourage"],1],
+["","50. Resources are “insufficient.” This means _____.",["Enough","a lot of","scarce","abundant"],2],
+
+["SECTION FIVE: Grammar","51. The girl _____ wrote the story is my sister.",["what","who","which","whose"],1],
+["","52. The tape recorder _____ in Korea.",["makes","made","is made","were made"],2],
+["","53. If he hadn’t arrived late, he would have missed the interesting part of the lecture. This sentence means that _____.",["He arrived late, so he missed the interesting part of the lecture.","He arrived late, but he didn’t miss the interesting part of the lecture.","He didn’t arrive late and he didn’t miss the interesting part of the lecture.","He didn’t arrive late but he missed the interesting part of the lecture."],1],
+["","54. I persuade ____ for a visit.",["him to come","him come","to come him","came to"],0],
+["","55. _____ the taxi gets here, we can leave for the airport.",["Immediately","For","As soon as","Still"],2],
+["","56. The teacher gave us _____ assignment, but we all enjoyed doing it.",["challenges","challenged","challenging","challenge"],2],
+["","57. She _____ speak three languages fluently.",["can","was able to","could","will be able to"],0],
+["","58. I don’t agree with him _____ I have accepted that his talk was clear.",["despite","although","since","in spite of"],1],
+["","59. If the police had arrested the suspect in time, no one _____ injured.",["had","would have been","had had","has"],1],
+["","60. _____ his laziness, he could answer all the questions.",["Although","But for","But for the fact that","However"],1],
+["","61. Our instructor told us to do our homework daily. This is the same as:",["Our instructor told us that we should do our homework daily.","Our instructor told us that we should not do our homework daily.","Our instructor told us that we do our homework daily.","Our instructor told us that we should to do our homework daily."],0],
+["","62. My father is always waking me up. I wish he _____ so much noise.",["made","hadn’t made","has made","make"],1],
+["","63. She ____ not to smoke in the class.",["said","ordered me","wanted to know","says"],1],
+["","64. Her father had _____ money and he couldn’t buy anything else.",["few","some","little","a little"],2],
+["","65. The sooner you finish your work ____ for you.",["The best it will be","the better it will be","it would be best","the good it will be"],1],
+["","66. There is nobody at the bus station. The bus _____.",["may have left","might have left","must have left","can’t have left"],2],
+["","67. We must not make girls _____ at home when they want to go to school.",["to stay","staying","to staying","stay"],3],
+["","68. My brother _____ in another part of the country for a few months.",["have been working","have worked","has been works","has been working"],3],
+["","69. By the end of next month, Abebe _____ from prison.",["Was released","will have been released","will has been released","will has released"],1],
+["","70. Would you mind _____ me your cellphone, please?",["lend","lending","to lend","lends"],1],
+["","71. Everyone of you _____ expected to contribute to the new enterprise?",["is","has","are","have"],0],
+["","72. If I saw anyone cheating in an exam, I _____ to the police immediately.",["would report","would have reported","will report","could have reported"],0],
+["","73. I feel that _____ loves me from the group. So I have to join another one.",["everyone","no one","anyone","someone"],1],
+["","74. Students get up early _____ reach there before noon.",["So that","so as to","in order that","so as not to"],1],
+["","75. It is getting late, _____ I am going to stop work.",["but","so","as a result","so that"],1],
+["","76. Neither Firdos’s sister nor her brother _____ seen them anywhere.",["has","have","are","is"],0],
+["","77. Ansha wasn’t satisfied _____ your service last week, but I don’t know what the reason was behind.",["at","with","of","in"],1],
+["","78. While I _____ to school, I saw my friend playing bingo.",["was going","is going","went","had gone"],0],
+
+["SECTION SIX: Communicative Activities","79. Hana: Dad is getting us a new TV set. I am excited. Lili: _____.",["I can’t believe that","How much is he going to pay","Is your dad rich enough","Many people around do not have TV set"],0],
+["","80. A: Do you speak Italian? B: _____.",["Just a little","I speak five language","I speak Arabic too","I have never been to Italy"],0],
+["","81. Son: _____. Dad: Nice to meet you Mr. Alemu",["Dad, this is my teacher Mr. Alemu","This is my dad, Mr. Alemu","Dad. Mr. Alemu is my teacher","Dad. That one is my teacher, Mr. Alemu"],0],
+["","82. Kidane: I am feeling dizzy. Tigist: _____.",["It sometime, rain here","Some feelings are difficult to manage","If I were you, I would see a doctor","perhaps you are right"],2],
+["","83. You: Excuse me where is the national Museum, please? Stranger: _____. I am stranger myself.",["I’d love very much","How do I know it","It is opposite the tourist","I am sorry I don’t know"],3],
+["","84. Selam: My friend is coming from America today. Sara: _____.",["America is very far away.","Yes, I agree with you.","Oh! that is good news","Why for"],2],
+["","85. Customer: _____. Shop Assistant: it is 2000 birr",["How much is this camera?","Whose is this camera?","Is this camera for sale?","Do you have a camera?"],0],
+["","86. Nardos: I heard you were the only person to get the job. Well done! Girma: _____.",["Thank you","Sure, I did.","Why expected I would not?","I knew I did well."],0],
+["","87. Lemlem: I won a DV lottery. I am leaving. Aynetu: _____.",["I hear so many people did","You are lucky. All the best","We should have tried it ourselves.","Several people have benefited from it."],1],
+["","88. Stranger: How can I get to the nearest cash point? Resident: _____.",["Why do you ask me?","You will need to walk fast","There is a bank around Aratkilo","Go straight and turn left before the light."],3],
+["","89. Secretary: How can I help you? Guest: _____.",["what is the manager doing?","Why don’t you show the manager’s house?","can I talk to the manager, please?","can I use the manager’s office"],2],
+["","90. Operator: _____. Caller: Yes, please. What number should I dial to get the fourth police station?",["It is Mr. Alemu.","Can I help you?","Could you leave a message?","Where do you live?"],1],
+["","91. Waiter: _____. Customer: a cup of coffee, please",["Are you mad?","What do you want hello?","What your favorite?","What can I get for you?"],3],
+["","92. A: How do you find yesterday’s game? B: _____.",["I think it is going to be good","I am going think it","I don’t suppose so","Oh! I found it was an interesting game"],3],
+["","93. Bedilu: Hello! Can I speak to Dr. Ahmed, please? Secretary: Oh! I am afraid he is not around. _____?",["Can I take a message","Will I care about you","Is it my concern","Ok! I am coming"],0],
+["","94. Rebka: How often do you visit your parents? Fantu: _____.",["just a month","next year","twice a week","in a century"],2],
+["","95. Hello Selam, how are you doing? Selam: _____.",["I am waiting you","I am fine thanks","I have a nice name","wow! It’s a good day, today"],1],
+["","96. Betelhem: I like drinking lots of water. Because it keeps my kidney healthy. Alimet: _____.",["Either I","Neither do I","So do I","I don’t"],2],
+["","97. Abebe: How is life treating you? Kedija: _____.",["I don’t bother about that.","Nice to meet you.","I don’t think so.","That is alright. How about you?"],3],
+["","98. Teacher: _____. Student: It is around 8 kms.",["How far is your village from the school?","How long does your village take from the school?","How long have you been in this school?","When do you come to school from your village?"],0],
+["","99. Samrawit: Do you know how to make money? Sable: _____.",["It is easy","I don’t like money","Yes, I can","No, I don’t"],3],
+["","100. Girma _____? Sable: I come from Brazil.",["Are you from Brazil","What is your country","Which country are you from","How do you come from Brazil"],2],
+["","101. Daniel: It is a comfortable chair, isn’t it? Lema: _____.",["Yes, it is nit","No, you are not","Yes, it is.","Indeed a comfortable one"],2],
+["","102. Leader: I believe that schools should ask students to evaluate their teachers. Audience: _____.",["Parents are the best teachers","You did wrong decision","I share your idea","You can’t say that again"],2],
+["","103. Zemenu: Do you mind if I switch off the light? Samuel: _____.",["No, go ahead","Yes, that is all right","Yes, please do","No, of course"],0],
+["","104. Getnet: Corruption should be avoided. Teklu: Perhaps, you may be right. Getnet: Since it is the obstacle for development, we all have to fight against it. Teklu: _____.",["I hate corruption","Well, I may agree with you","It is for the concerned body","It is the government’s duty"],1],
+["","105. Dina: Would you like to join us tomorrow night? We are going to Langano. Bona: _____, but I don’t think my wife would approve.",["Not sure and interesting","I’d love to","I can’t, please","call me when you go"],1],
+["","106. Student: I would like to improve my English. _____? Student: You ought to watch English channels and read books.",["What must I do","What may I do","What should I do","What was I do"],2],
+["","107. Ayalew: It has been raining all day. It must be muddy outside. Taitu: I think, we mustn’t wear sandals when we go out. Ayalew: _____.",["I do too","I think so","what is more","you must be lying"],1],
+
+["WRITING","108. Which one of the following sentence has correct capitalization?",["The language I wanted to learn was arabic, not French.","The language I wanted to learn was Arabic, not French.","The language I wanted to learn was Arabic, not french.","The language I wanted to learn was arabic, not French."],1],
+["","109. “Your responses will be held confidentially.” Which might be a good reason for writing this in the first few lines of a survey questionnaire?",["Appreciating respondents’ participation","limiting sample size","increasing response rate","requesting for permission"],2],
+["","110. We interview 10 managers of different branches in the city to see if what they think about the problem conforms to the information we secured from the customers. Which section of the study?",["objective","Methodology","Introduction","Data analysis"],1],
+["","111. The coherence of the ideas in a paragraph is usually achieved by using ____.",["grammar","cohesive devices","appropriate vocabulary","rhetorical question"],1],
+["","112. “I was born in Jimma and moved to Harar with my parents when I was twelve.” This statement is likely taken from the beginning of a/an _____ text.",["narrative","descriptive","exposition","argumentative"],0],
+["","113. Which sentence is correctly punctuated?",["In spite of leaving early; she didn’t reach on time.","In spite of leaving early: she didn’t reach on time.","In spite of leaving early! she didn’t reach on time.","In spite of leaving early, she didn’t reach on time."],3],
+["","114. The stadium is very attractive. It is rock fenced. There are some long building around it... This is taken from a piece of writing most likely ____.",["narrative","argumentative","descriptive","Expository"],2],
+["","115. Which word is correctly spelt?",["Psychology","discusson","socology","ochestra"],0],
+["","116. “I am writing this letter to apply for your program’s assistant supervisor position...” This is a typical example of _____ letter.",["condolence","apology","farewell","job application"],3],
+["","117. Which of the following is correctly punctuated?",["The sun which our planet revolves around is much hotter than the moon","The sun, which our planet revolves around, is much hotter than the moon.","The sun which our planet revolves, around is much hotter than the moon","The sun which our planet revolves, around is much hotter than the moon"],1],
+["","118. Which one does not contain error in mechanics, punctuation and capitalization?",["“I will tell you when I am old enough”, said the son","“I will tell you when I am old enough” said the son.","“I will tell you when I am old enough” said the son.","“I will tell you when I am old enough,” said the son."],3],
+["","119. “Love is nothing, but it is a combination of four English letters love, meaning of which is far beyond what we think” is likely taken from _____ type of writing.",["an expository","a descriptive","a narrative","an argumentative"],1],
+["","120. “Gun control has been a controversial issue for many years” might be taken as the thesis of _____ essay.",["narrative","argumentative","descriptive","expository"],1]
+];
+
+const form=document.getElementById("exam");
+let currentSection="";
+questions.forEach((q,i)=>{
+  if(q[0] && q[0]!==currentSection){ currentSection=q[0]; form.insertAdjacentHTML("beforeend",`<div class="section">${currentSection}</div>`); }
+  const [sec,text,opts,ans]=q;
+  let html=`<div class="q"><h3>${text}</h3>`;
+  opts.forEach((o,j)=>html+=`<label><input type="radio" name="q${i}" value="${j}"> ${String.fromCharCode(65+j)}. ${o}</label>`);
+  html+=`</div>`;
+  form.insertAdjacentHTML("beforeend",html);
+});
+
+let remaining=120*60;
+const timerEl=document.getElementById("timer");
+const interval=setInterval(()=>{
+  remaining--;
+  const h=Math.floor(remaining/3600),m=Math.floor((remaining%3600)/60),s=remaining%60;
+  timerEl.textContent=[h,m,s].map((x,k)=>String(x).padStart(2,"0")).join(":");
+  if(remaining<=0){clearInterval(interval); submitExam(true);}
+},1000);
+
+function submitExam(auto=false){
+  if(!auto && !confirm("Are you sure you want to submit the exam?")) return;
+  clearInterval(interval);
+  let score=0, unanswered=0;
+  questions.forEach((q,i)=>{
+    const selected=document.querySelector(`input[name="q${i}"]:checked`);
+    if(!selected) unanswered++;
+    else if(Number(selected.value)===q[3]) score++;
+  });
+  const percent=(score/questions.length*100).toFixed(2);
+  const name=document.getElementById("studentName").value.trim()||"Student";
+  document.querySelectorAll("input").forEach(x=>x.disabled=true);
+  document.getElementById("result").style.display="block";
+  document.getElementById("result").innerHTML=`<h2>Exam Result</h2>
+  <p><b>Student:</b> ${escapeHtml(name)}</p>
+  <p><b>Score:</b> ${score} / ${questions.length}</p>
+  <p><b>Percentage:</b> ${percent}%</p>
+  <p><b>Unanswered:</b> ${unanswered}</p>
+  <p>${auto?"Time finished. The exam was submitted automatically.":"Your exam has been submitted."}</p>`;
+  document.getElementById("result").scrollIntoView({behavior:"smooth"});
+}
+function escapeHtml(s){return s.replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));}
+</script>
+</body>
+</html>
