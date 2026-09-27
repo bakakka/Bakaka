@@ -1,0 +1,393 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Online English Exam</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .question {
+            margin-bottom: 25px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+
+        .question p {
+            font-weight: bold;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0;
+            cursor: pointer;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background: #1877f2;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0d5ec7;
+        }
+
+        #result {
+            margin-top: 20px;
+            padding: 20px;
+            text-align: center;
+            font-size: 22px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Online English Exam</h1>
+
+    <p><b>Instructions:</b> Choose the correct answer for each question.</p>
+
+    <form id="examForm">
+
+        <!-- Question 1 -->
+        <div class="question">
+            <p>1. What is the plural of "book"?</p>
+
+            <label>
+                <input type="radio" name="q1" value="A">
+                A. Bookes
+            </label>
+
+            <label>
+                <input type="radio" name="q1" value="B">
+                B. Books
+            </label>
+
+            <label>
+                <input type="radio" name="q1" value="C">
+                C. Bookies
+            </label>
+
+            <label>
+                <input type="radio" name="q1" value="D">
+                D. Book
+            </label>
+        </div>
+
+
+        <!-- Question 2 -->
+        <div class="question">
+            <p>2. Choose the correct sentence.</p>
+
+            <label>
+                <input type="radio" name="q2" value="A">
+                A. She are a student.
+            </label>
+
+            <label>
+                <input type="radio" name="q2" value="B">
+                B. She am a student.
+            </label>
+
+            <label>
+                <input type="radio" name="q2" value="C">
+                C. She is a student.
+            </label>
+
+            <label>
+                <input type="radio" name="q2" value="D">
+                D. She be a student.
+            </label>
+        </div>
+
+
+        <!-- Question 3 -->
+        <div class="question">
+            <p>3. What is the opposite of "big"?</p>
+
+            <label>
+                <input type="radio" name="q3" value="A">
+                A. Large
+            </label>
+
+            <label>
+                <input type="radio" name="q3" value="B">
+                B. Small
+            </label>
+
+            <label>
+                <input type="radio" name="q3" value="C">
+                C. Tall
+            </label>
+
+            <label>
+                <input type="radio" name="q3" value="D">
+                D. Long
+            </label>
+        </div>
+
+
+        <!-- Question 4 -->
+        <div class="question">
+            <p>4. Which word is a verb?</p>
+
+            <label>
+                <input type="radio" name="q4" value="A">
+                A. Beautiful
+            </label>
+
+            <label>
+                <input type="radio" name="q4" value="B">
+                B. Quickly
+            </label>
+
+            <label>
+                <input type="radio" name="q4" value="C">
+                C. Run
+            </label>
+
+            <label>
+                <input type="radio" name="q4" value="D">
+                D. Book
+            </label>
+        </div>
+
+
+        <!-- Question 5 -->
+        <div class="question">
+            <p>5. What is the past tense of "go"?</p>
+
+            <label>
+                <input type="radio" name="q5" value="A">
+                A. Goed
+            </label>
+
+            <label>
+                <input type="radio" name="q5" value="B">
+                B. Goes
+            </label>
+
+            <label>
+                <input type="radio" name="q5" value="C">
+                C. Went
+            </label>
+
+            <label>
+                <input type="radio" name="q5" value="D">
+                D. Going
+            </label>
+        </div>
+
+
+        <!-- Question 6 -->
+        <div class="question">
+            <p>6. Choose the correct article: "I have ___ apple."</p>
+
+            <label>
+                <input type="radio" name="q6" value="A">
+                A. a
+            </label>
+
+            <label>
+                <input type="radio" name="q6" value="B">
+                B. an
+            </label>
+
+            <label>
+                <input type="radio" name="q6" value="C">
+                C. the
+            </label>
+
+            <label>
+                <input type="radio" name="q6" value="D">
+                D. no article
+            </label>
+        </div>
+
+
+        <!-- Question 7 -->
+        <div class="question">
+            <p>7. Which one is a noun?</p>
+
+            <label>
+                <input type="radio" name="q7" value="A">
+                A. Teacher
+            </label>
+
+            <label>
+                <input type="radio" name="q7" value="B">
+                B. Quickly
+            </label>
+
+            <label>
+                <input type="radio" name="q7" value="C">
+                C. Beautiful
+            </label>
+
+            <label>
+                <input type="radio" name="q7" value="D">
+                D. Slowly
+            </label>
+        </div>
+
+
+        <!-- Question 8 -->
+        <div class="question">
+            <p>8. What is the synonym of "happy"?</p>
+
+            <label>
+                <input type="radio" name="q8" value="A">
+                A. Sad
+            </label>
+
+            <label>
+                <input type="radio" name="q8" value="B">
+                B. Angry
+            </label>
+
+            <label>
+                <input type="radio" name="q8" value="C">
+                C. Glad
+            </label>
+
+            <label>
+                <input type="radio" name="q8" value="D">
+                D. Tired
+            </label>
+        </div>
+
+
+        <!-- Question 9 -->
+        <div class="question">
+            <p>9. Choose the correct form: "They ___ football every Sunday."</p>
+
+            <label>
+                <input type="radio" name="q9" value="A">
+                A. plays
+            </label>
+
+            <label>
+                <input type="radio" name="q9" value="B">
+                B. play
+            </label>
+
+            <label>
+                <input type="radio" name="q9" value="C">
+                C. playing
+            </label>
+
+            <label>
+                <input type="radio" name="q9" value="D">
+                D. played
+            </label>
+        </div>
+
+
+        <!-- Question 10 -->
+        <div class="question">
+            <p>10. Which sentence is in the past tense?</p>
+
+            <label>
+                <input type="radio" name="q10" value="A">
+                A. I eat breakfast.
+            </label>
+
+            <label>
+                <input type="radio" name="q10" value="B">
+                B. I am eating breakfast.
+            </label>
+
+            <label>
+                <input type="radio" name="q10" value="C">
+                C. I ate breakfast.
+            </label>
+
+            <label>
+                <input type="radio" name="q10" value="D">
+                D. I will eat breakfast.
+            </label>
+        </div>
+
+
+        <button type="button" onclick="checkExam()">
+            Submit Exam
+        </button>
+
+    </form>
+
+    <div id="result"></div>
+
+</div>
+
+
+<script>
+
+function checkExam() {
+
+    let answers = {
+        q1: "B",
+        q2: "C",
+        q3: "B",
+        q4: "C",
+        q5: "C",
+        q6: "B",
+        q7: "A",
+        q8: "C",
+        q9: "B",
+        q10: "C"
+    };
+
+    let score = 0;
+
+    for (let question in answers) {
+
+        let selected = document.querySelector(
+            'input[name="' + question + '"]:checked'
+        );
+
+        if (selected && selected.value === answers[question]) {
+            score++;
+        }
+    }
+
+    let percentage = (score / 10) * 100;
+
+    document.getElementById("result").innerHTML =
+        "Your Score: " + score + " / 10" +
+        "<br>Percentage: " + percentage + "%";
+}
+
+</script>
+
+</body>
+</html>
